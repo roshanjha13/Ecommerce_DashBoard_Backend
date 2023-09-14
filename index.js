@@ -18,4 +18,4 @@ app.get("/", (req, res) => {
 });
 
 const port = process.env.PORT;
-app.listen(5000);
+app.listen(port);
