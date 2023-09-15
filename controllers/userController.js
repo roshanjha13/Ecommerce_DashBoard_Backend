@@ -10,7 +10,7 @@ exports.register = asyncHandler(async (req, res) => {
 });
 
 exports.login = asyncHandler(async (req, res) => {
-  if (req.body.name && req.body.password && req.body.email) {
+  if (req.body.password && req.body.email) {
     let user = await User.findOne(req.body).select("-password");
     if (user) {
       res.json(user);
