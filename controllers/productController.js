@@ -14,3 +14,15 @@ exports.getProducts = asyncHandler(async (req, res) => {
   }
   res.send(products);
 });
+
+exports.deleteProduct = asyncHandler(async (req, res) => {
+  let products = await Product.find();
+  if (products.length === 0) {
+    res.send({ result: "product not exist" });
+  }
+  products = await Product.deleteOne({ _id: req.params.id });
+  res.json({
+    messgae: "product deleted successfully",
+    products,
+  });
+});
