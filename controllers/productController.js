@@ -26,3 +26,12 @@ exports.deleteProduct = asyncHandler(async (req, res) => {
     products,
   });
 });
+
+exports.getSingleProduct = asyncHandler(async (req, res) => {
+  let product = await Product.findOne({ _id: req.params.id });
+  if (!product) {
+    res.json({ messgae: "product not found" });
+  } else {
+    res.json(product);
+  }
+});
