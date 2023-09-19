@@ -35,3 +35,18 @@ exports.getSingleProduct = asyncHandler(async (req, res) => {
     res.json(product);
   }
 });
+
+exports.updateProduct = asyncHandler(async (req, res) => {
+  let product = await Product.find();
+  if (product.length === 0) {
+    res.send({ result: "product not exist" });
+  }
+
+  product = await Product.updateOne(
+    { _id: req.params.id },
+    {
+      $set: req.body,
+    }
+  );
+  res.json(product);
+});
