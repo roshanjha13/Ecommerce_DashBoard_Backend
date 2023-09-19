@@ -50,3 +50,15 @@ exports.updateProduct = asyncHandler(async (req, res) => {
   );
   res.json(product);
 });
+
+exports.searchProduct = asyncHandler(async (req, res) => {
+  let searchProduct = await Product.find({
+    $or: [
+      { name: { $regex: req.params.key } },
+      { category: { $regex: req.params.key } },
+      { price: { $regex: req.params.key } },
+      { company: { $regex: req.params.key } },
+    ],
+  });
+  res.send(searchProduct);
+});
